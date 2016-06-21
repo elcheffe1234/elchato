@@ -1,7 +1,9 @@
 package elchatocompany.elchato;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -61,14 +63,33 @@ public class MainActivity extends AppCompatActivity {
             logintext = "Welcome " + user;
             Intent i = new Intent(this, ChatsActivity.class);
             startActivity(i);
-            Toast.makeText(this, logintext, Toast.LENGTH_SHORT);
+            Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
         }
         else{
             logintext = "Login failed";
-            Toast.makeText(this, logintext, Toast.LENGTH_SHORT);
+            Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
         }
     }
+/*
+    public int load(TextView highscore) {
+        int sharedHighscore;
+        SharedPreferences sp = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        sharedHighscore = sp.getInt("high", 0);
+        highscore.setText("Highscore: " + sharedHighscore);
 
+        return sharedHighscore;
+    }
+
+    public void save(String key, int value) {
+        SharedPreferences sp = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putInt(key, value);
+        edit.commit();
+    }
+
+    */
     @Override
     public void onBackPressed() {
         System.exit(0);
