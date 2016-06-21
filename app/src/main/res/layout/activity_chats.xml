@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:src="@android:drawable/ic_input_add" />
+        android:src="@android:drawable/ic_input_add"
+        android:onClick="addChat" />
 
     <ListView
         android:layout_width="wrap_content"
