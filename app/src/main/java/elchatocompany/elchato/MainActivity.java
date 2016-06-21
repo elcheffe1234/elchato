@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         String pass = password.getText().toString();
         String logintext ="";
 
-        if(user.equals("1") || pass.equals("1")){
+        if(user.equals("1") && pass.equals("1")){
             logintext = "Welcome " + user;
             Intent i = new Intent(this, ChatsActivity.class);
             startActivity(i);
