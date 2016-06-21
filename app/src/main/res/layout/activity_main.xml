@@ -38,7 +38,8 @@
         android:id="@+id/registr"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="130dp" />
+        android:layout_marginBottom="130dp"
+        android:onClick="register"/>
 
     <Button
         android:layout_width="match_parent"
@@ -47,7 +48,8 @@
         android:id="@+id/login"
         android:layout_above="@+id/registr"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:onClick="login"/>
 
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package elchatocompany.elchato;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,29 +46,27 @@ public class MainActivity extends AppCompatActivity {
         //Zuweisung buttons
         login = (Button) findViewById(R.id.login);
         registr = (Button) findViewById(R.id.registr);
-
-        setListeners();
     }
 
-    public void setListeners() {
+    public void register(View v){
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
-                String logintext ="";
+    }
 
-                if(user.equals("5") || pass.equals("asdf")){
-                    logintext = "Welcome " + user;
-                    Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    logintext = "Login failed";
-                    Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+    public void login(View v){
+        String user = username.getText().toString();
+        String pass = password.getText().toString();
+        String logintext ="";
+
+        if(user.equals("1") || pass.equals("1")){
+            logintext = "Welcome " + user;
+            Intent i = new Intent(this, ChatsActivity.class);
+            startActivity(i);
+            Toast.makeText(this, logintext, Toast.LENGTH_SHORT);
+        }
+        else{
+            logintext = "Login failed";
+            Toast.makeText(this, logintext, Toast.LENGTH_SHORT);
+        }
     }
 
     @Override
