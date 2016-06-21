@@ -21,6 +21,8 @@ import java.io.InputStreamReader;
 
 public class AddActivity extends AppCompatActivity {
 
+    UserModel um;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
 
         //if user exists
         if(!sp.getString(user, "").isEmpty()){
-            savePersonInChatsFile(user, "actual_user_chat");
+            savePersonInChatsFile(user, UserModel.getInstance().getUsername() + "_chats");
 
             Toast.makeText(this, "Person added", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, ChatsActivity.class);
@@ -57,14 +59,14 @@ public class AddActivity extends AppCompatActivity {
     public void savePersonInChatsFile(String addedPerson, String filename){
         FileOutputStream fos = null;
         try {
-            String writestring = readFromFile();
+            String writestring = readFromFile(filename);
             if(!writestring.isEmpty()) {
                 writestring = writestring + "," + addedPerson;
             }
             else {
                 writestring = addedPerson;
             }
-            fos = openFileOutput("yyy.txt", this.MODE_PRIVATE);
+            fos = openFileOutput(filename, this.MODE_PRIVATE);
             fos.write(writestring.getBytes());
             fos.close();
         } catch (IOException e){
@@ -72,12 +74,12 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
-    private String readFromFile() {
+    private String readFromFile(String filename) {
 
         String ret = "";
 
         try {
-            InputStream inputStream = openFileInput("yyy.txt");
+            InputStream inputStream = openFileInput(filename);
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

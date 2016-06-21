@@ -27,6 +27,7 @@ import java.io.InputStreamReader;
 
 public class ChatsActivity extends AppCompatActivity {
 
+    private UserModel um;
     private ListView listview;
     String[] values;
     /**
@@ -86,7 +87,7 @@ public class ChatsActivity extends AppCompatActivity {
         String ret = "";
 
         try {
-            InputStream inputStream = openFileInput("yyy.txt");
+            InputStream inputStream = openFileInput(UserModel.getInstance().getUsername() + "_chats");
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

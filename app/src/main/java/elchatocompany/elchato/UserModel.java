@@ -7,10 +7,15 @@ import java.util.Vector;
  */
 public class UserModel {
 
+    private static UserModel userModel = new UserModel();
 
     private String username;
     private Vector<String> contacts;
     private Vector<String> chats;
+
+    public UserModel(){
+
+    }
 
     public Vector<String> getContacts() {
         return contacts;
@@ -40,4 +45,7 @@ public class UserModel {
 
     }
 
+    public static UserModel getInstance( ) {
+        return userModel;
+    }
 }

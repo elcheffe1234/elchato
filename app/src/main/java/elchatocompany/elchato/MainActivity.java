@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private UserModel um;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String sharedPassword = sp.getString(user, "");
                 if (pass.equals(sharedPassword)) {
+                    UserModel.getInstance().setUsername(user);
                     logintext = "Welcome " + user;
                     Intent i = new Intent(this, ChatsActivity.class);
                     startActivity(i);
