@@ -35,8 +35,6 @@ public class AddActivity extends AppCompatActivity {
 
         //if user exists
         if(!sp.getString(user, "").isEmpty()){
-           //TODO: add user to listitem in chatview
-
             savePersonInChatsFile(user, "actual_user_chat");
 
             Toast.makeText(this, "Person added", Toast.LENGTH_SHORT).show();
