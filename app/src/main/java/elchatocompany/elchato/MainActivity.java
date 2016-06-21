@@ -1,5 +1,6 @@
 package elchatocompany.elchato;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -16,12 +17,17 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView username;
     private TextView password;
     private Button login;
     private Button registr;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -51,45 +57,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void register(View v){
-
+        Intent i = new Intent(this, RegistrationActivity.class);
+        startActivity(i);
     }
 
     public void login(View v){
         String user = username.getText().toString();
         String pass = password.getText().toString();
-        String logintext ="";
+        String logintext = "Login failed";
 
-        if(user.equals("1") && pass.equals("1")){
-            logintext = "Welcome " + user;
-            Intent i = new Intent(this, ChatsActivity.class);
-            startActivity(i);
+        if(!user.isEmpty() && !pass.isEmpty()) {
+            SharedPreferences sp = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            try {
+                String sharedPassword = sp.getString(user, "");
+                if (pass.equals(sharedPassword)) {
+                    logintext = "Welcome " + user;
+                    Intent i = new Intent(this, ChatsActivity.class);
+                    startActivity(i);
+                    Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+
+                    Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
             Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
         }
-        else{
-            logintext = "Login failed";
-            Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
-        }
-    }
-/*
-    public int load(TextView highscore) {
-        int sharedHighscore;
-        SharedPreferences sp = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        sharedHighscore = sp.getInt("high", 0);
-        highscore.setText("Highscore: " + sharedHighscore);
-
-        return sharedHighscore;
     }
 
-    public void save(String key, int value) {
-        SharedPreferences sp = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putInt(key, value);
-        edit.commit();
-    }
-
-    */
     @Override
     public void onBackPressed() {
         System.exit(0);
