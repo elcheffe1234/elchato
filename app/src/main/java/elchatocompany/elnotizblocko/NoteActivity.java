@@ -1,13 +1,15 @@
-package elchatocompany.elchato;
+package elchatocompany.elnotizblocko;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ChatActivity extends AppCompatActivity {
+import elchatocompany.elchato.R;
+
+public class NoteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_note);
     }
 }

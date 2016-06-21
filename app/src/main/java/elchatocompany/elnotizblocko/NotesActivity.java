@@ -1,9 +1,7 @@
-package elchatocompany.elchato;
+package elchatocompany.elnotizblocko;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,21 +9,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ChatsActivity extends AppCompatActivity {
+import elchatocompany.elchato.R;
+
+public class NotesActivity extends AppCompatActivity {
 
     private UserModel um;
     private ListView listview;
@@ -39,7 +36,7 @@ public class ChatsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chats);
+        setContentView(R.layout.activity_notes);
         showList();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -55,7 +52,7 @@ public class ChatsActivity extends AppCompatActivity {
     }
 
     public void openChat() {
-        Intent i = new Intent(this, ChatActivity.class);
+        Intent i = new Intent(this, NoteActivity.class);
         startActivity(i);
     }
 
@@ -87,7 +84,7 @@ public class ChatsActivity extends AppCompatActivity {
         String ret = "";
 
         try {
-            InputStream inputStream = openFileInput(UserModel.getInstance().getUsername() + "_chats");
+            InputStream inputStream = openFileInput(UserModel.getInstance().getUsername() + "_notes");
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -107,8 +104,8 @@ public class ChatsActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
-        String[] contacts = ret.split(",");
-        return contacts;
+        String[] notes = ret.split(",");
+        return notes;
     }
 
     @Override

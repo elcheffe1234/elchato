@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="elchatocompany.elchato.AddActivity">
+    tools:context="elchatocompany.elnotizblocko.AddActivity">
 
     <EditText
         android:layout_width="match_parent"
@@ -38,5 +38,5 @@
         android:layout_above="@+id/cancel_action"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:onClick="addUser"/>
+        android:onClick="addNote"/>
 </RelativeLayout>

@@ -1,6 +1,5 @@
-package elchatocompany.elchato;
+package elchatocompany.elnotizblocko;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -8,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +15,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+import elchatocompany.elchato.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    private UserModel um;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 if (pass.equals(sharedPassword)) {
                     UserModel.getInstance().setUsername(user);
                     logintext = "Welcome " + user;
-                    Intent i = new Intent(this, ChatsActivity.class);
+                    Intent i = new Intent(this, NotesActivity.class);
                     startActivity(i);
                     Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
                     finish();

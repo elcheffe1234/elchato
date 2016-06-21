@@ -1,9 +1,6 @@
-package elchatocompany.elchato;
+package elchatocompany.elnotizblocko;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import elchatocompany.elchato.R;
+
 public class AddActivity extends AppCompatActivity {
 
     UserModel um;
@@ -29,48 +28,41 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
     }
 
-    public void addUser(View v){
+    public void addNote(View v){
         EditText findUser = (EditText) findViewById(R.id.usernamefinder);
-        String user = findUser.getText().toString();
-        SharedPreferences sp = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        String note = findUser.getText().toString();
 
-        //if user exists
-        if(!sp.getString(user, "").isEmpty()){
-            savePersonInChatsFile(user, UserModel.getInstance().getUsername() + "_chats");
+        saveNoteInNotesFile(note, UserModel.getInstance().getUsername() + "_notes");
 
-            Toast.makeText(this, "Person added", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, ChatsActivity.class);
-            startActivity(i);
-            finish();
-        }
-        else {
-            Toast.makeText(this, "Person not found", Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, "New note added", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, NotesActivity.class);
+        startActivity(i);
+        finish();
+
     }
 
     public void cancel(View v){
-        Toast.makeText(this, "Adding person canceled", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(this, ChatsActivity.class);
+        Toast.makeText(this, "Adding note canceled", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, NotesActivity.class);
         startActivity(i);
         finish();
     }
 
-    public void savePersonInChatsFile(String addedPerson, String filename){
+    public void saveNoteInNotesFile(String addedNote, String filename){
         FileOutputStream fos = null;
         try {
             String writestring = readFromFile(filename);
             if(!writestring.isEmpty()) {
-                writestring = writestring + "," + addedPerson;
+                writestring = writestring + "," + addedNote;
             }
             else {
-                writestring = addedPerson;
+                writestring = addedNote;
             }
             fos = openFileOutput(filename, this.MODE_PRIVATE);
             fos.write(writestring.getBytes());
             fos.close();
         } catch (IOException e){
-            Toast.makeText(this, "Unable to add new chat!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to add new note!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -105,7 +97,7 @@ public class AddActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent i = new Intent(this, ChatsActivity.class);
+            Intent i = new Intent(this, NotesActivity.class);
             startActivity(i);
             return true;
         }

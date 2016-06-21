@@ -1,4 +1,4 @@
-package elchatocompany.elchato;
+package elchatocompany.elnotizblocko;
 
 import org.junit.Test;
 

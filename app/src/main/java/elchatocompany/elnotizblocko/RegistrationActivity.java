@@ -1,4 +1,4 @@
-package elchatocompany.elchato;
+package elchatocompany.elnotizblocko;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import elchatocompany.elchato.R;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -31,7 +33,7 @@ public class RegistrationActivity extends AppCompatActivity {
             finish();
         }
         else{
-            Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Username already exists", Toast.LENGTH_SHORT).show();
         }
     }
 

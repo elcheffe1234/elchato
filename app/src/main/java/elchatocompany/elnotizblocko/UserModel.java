@@ -1,4 +1,4 @@
-package elchatocompany.elchato;
+package elchatocompany.elnotizblocko;
 
 import java.util.Vector;
 
@@ -10,19 +10,19 @@ public class UserModel {
     private static UserModel userModel = new UserModel();
 
     private String username;
-    private Vector<String> contacts;
-    private Vector<String> chats;
+    private Vector<String> noteFiles;
+    private Vector<String> notes;
 
     public UserModel(){
 
     }
 
     public Vector<String> getContacts() {
-        return contacts;
+        return noteFiles;
     }
 
-    public void setContacts(Vector<String> contacts) {
-        this.contacts = contacts;
+    public void setContacts(Vector<String> noteFiles) {
+        this.noteFiles = noteFiles;
     }
 
     public String getUsername() {
@@ -34,11 +34,11 @@ public class UserModel {
     }
 
     public Vector<String> getChats() {
-        return chats;
+        return notes;
     }
 
-    public void setChats(Vector<String> chats) {
-        this.chats = chats;
+    public void setChats(Vector<String> notes) {
+        this.notes = notes;
     }
 
     public void getData(){
