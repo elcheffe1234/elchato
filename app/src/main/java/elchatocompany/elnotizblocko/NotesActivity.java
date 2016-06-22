@@ -75,6 +75,7 @@ public class NotesActivity extends AppCompatActivity {
                 // ListView Clicked item value
                 String itemValue = (String) listview.getItemAtPosition(position);
                 openChat();
+                UserModel.getInstance().setEditFolderName(itemValue);
             }
         });
     }

@@ -13,6 +13,16 @@ public class UserModel {
     private Vector<String> noteFiles;
     private Vector<String> notes;
 
+    public String getEditFolderName() {
+        return editFolderName;
+    }
+
+    public void setEditFolderName(String editFolderName) {
+        this.editFolderName = editFolderName;
+    }
+
+    private String editFolderName;
+
     public UserModel(){
 
     }
