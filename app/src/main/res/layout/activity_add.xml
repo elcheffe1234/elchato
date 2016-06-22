@@ -38,5 +38,5 @@
         android:layout_above="@+id/cancel_action"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:onClick="addUser"/>
+        android:onClick="addAdress"/>
 </RelativeLayout>

@@ -6,12 +6,22 @@ import java.util.Vector;
  * Created by Daniel on 21.06.2016.
  */
 public class UserModel {
+    public static int getSocketServerPORT() {
+        return SocketServerPORT;
+    }
 
+    static final int SocketServerPORT = 8080;
     private static UserModel userModel = new UserModel();
 
     private String username;
     private Vector<String> contacts;
     private Vector<String> chats;
+
+    public void setChatClientThread(ChatClientThread chatClientThread) {
+        this.chatClientThread = chatClientThread;
+    }
+
+    private ChatClientThread chatClientThread;
 
     public UserModel(){
 
@@ -45,7 +55,12 @@ public class UserModel {
 
     }
 
+    public ChatClientThread getChatClientThread(){
+        return chatClientThread;
+    }
+
     public static UserModel getInstance( ) {
         return userModel;
     }
+
 }

@@ -29,23 +29,23 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
     }
 
-    public void addUser(View v){
-        EditText findUser = (EditText) findViewById(R.id.usernamefinder);
-        String user = findUser.getText().toString();
+    public void addAdress(View v){
+        EditText findAdress = (EditText) findViewById(R.id.usernamefinder);
+        String adress = findAdress.getText().toString();
         SharedPreferences sp = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
         //if user exists
-        if(!sp.getString(user, "").isEmpty()){
-            savePersonInChatsFile(user, UserModel.getInstance().getUsername() + "_chats");
+        if(!adress.isEmpty()){
+            savePersonInChatsFile(adress, UserModel.getInstance().getUsername() + "_chats");
 
-            Toast.makeText(this, "Person added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Chatroom added", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, ChatsActivity.class);
             startActivity(i);
             finish();
         }
         else {
-            Toast.makeText(this, "Person not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Chatroom can not be empty", Toast.LENGTH_SHORT).show();
         }
     }
 
