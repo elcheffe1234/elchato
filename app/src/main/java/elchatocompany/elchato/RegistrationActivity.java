@@ -20,6 +20,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 .getDefaultSharedPreferences(this);
     }
 
+    /**
+     * set save values of registrated person
+     * @param v
+     */
     public void create(View v){
         EditText email = (EditText) findViewById(R.id.email);
         EditText user = (EditText) findViewById(R.id.user);
@@ -35,9 +39,12 @@ public class RegistrationActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * save values of registrated person in shared preferences
+     * @param key
+     * @param value
+     */
     public void save(String key, String value) {
-
-
         SharedPreferences.Editor edit = sp.edit();
         edit.putString(key, value);
         edit.commit();

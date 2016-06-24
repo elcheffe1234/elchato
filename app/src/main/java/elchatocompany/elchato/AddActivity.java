@@ -29,16 +29,19 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
     }
 
+    /**
+     * Add serveraddress to chat
+     * @param v
+     */
     public void addAdress(View v){
         EditText findAdress = (EditText) findViewById(R.id.usernamefinder);
         String adress = findAdress.getText().toString();
         SharedPreferences sp = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
-        //if user exists
+        //if address is empty
         if(!adress.isEmpty()){
             savePersonInChatsFile(adress, UserModel.getInstance().getUsername() + "_chats");
-
             Toast.makeText(this, "Chatroom added", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, ChatsActivity.class);
             startActivity(i);
@@ -49,6 +52,10 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * cancel button pressed
+     * @param v
+     */
     public void cancel(View v){
         Toast.makeText(this, "Adding person canceled", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this, ChatsActivity.class);
@@ -56,9 +63,15 @@ public class AddActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * save content into file
+     * @param addedPerson
+     * @param filename
+     */
     public void savePersonInChatsFile(String addedPerson, String filename){
         FileOutputStream fos = null;
         try {
+            //before saving read whole file - avoid overwriting existing filecontent
             String writestring = readFromFile(filename);
             if(!writestring.isEmpty()) {
                 writestring = writestring + "," + addedPerson;
@@ -66,6 +79,7 @@ public class AddActivity extends AppCompatActivity {
             else {
                 writestring = addedPerson;
             }
+            //write into file
             fos = openFileOutput(filename, this.MODE_PRIVATE);
             fos.write(writestring.getBytes());
             fos.close();
@@ -74,6 +88,11 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * read content from file
+     * @param filename
+     * @return filecontent
+     */
     private String readFromFile(String filename) {
 
         String ret = "";
@@ -102,6 +121,12 @@ public class AddActivity extends AppCompatActivity {
         return ret;
     }
 
+    /**
+     * when back button on phone was pressed
+     * @param keyCode
+     * @param event
+     * @return last intent
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    /**
+     * initialize login for chat
+     */
     public void init() {
 
         //Zuweisung textviews
@@ -56,21 +59,32 @@ public class MainActivity extends AppCompatActivity {
         registr = (Button) findViewById(R.id.registr);
     }
 
+    /**
+     * open new register intent
+     * @param v
+     */
     public void register(View v){
         Intent i = new Intent(this, RegistrationActivity.class);
         startActivity(i);
     }
 
+    /**
+     * check for login
+     * @param v
+     */
     public void login(View v){
         String user = username.getText().toString();
         String pass = password.getText().toString();
         String logintext = "Login failed";
 
+        //user && pass are not empty
         if(!user.isEmpty() && !pass.isEmpty()) {
             SharedPreferences sp = PreferenceManager
                     .getDefaultSharedPreferences(this);
             try {
+                //search user in shared preferences
                 String sharedPassword = sp.getString(user, "");
+                //when user exists (user is the key for the preferences) - check for the password
                 if (pass.equals(sharedPassword)) {
                     UserModel.getInstance().setUsername(user);
                     logintext = "Welcome " + user;
@@ -79,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-
+                    //user does not exists || password is wrong
                     Toast.makeText(this, logintext, Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
@@ -91,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * when backbutton is pressed
+     */
     @Override
     public void onBackPressed() {
         System.exit(0);

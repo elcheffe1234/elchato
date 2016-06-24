@@ -47,18 +47,27 @@ public class ChatsActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * goto add a new chat intent
+     * @param v
+     */
     public void addChat(View v) {
         Intent i = new Intent(this, AddActivity.class);
         startActivity(i);
         finish();
     }
 
+    /**
+     * enter into a chat
+     */
     public void openChat() {
         Intent i = new Intent(this, ChatActivity.class);
         startActivity(i);
     }
 
+    /**
+     * display all existing chats form file
+     */
     public void showList() {
         listview = (ListView) findViewById(R.id.listView);
 
@@ -83,10 +92,12 @@ public class ChatsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * read all chats from file
+     * @return all chats
+     */
     public String[] readFromFile() {
-
         String ret = "";
-
         try {
             InputStream inputStream = openFileInput(UserModel.getInstance().getUsername() + "_chats");
 
