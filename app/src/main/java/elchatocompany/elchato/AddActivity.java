@@ -57,7 +57,7 @@ public class AddActivity extends AppCompatActivity {
      * @param v
      */
     public void cancel(View v){
-        Toast.makeText(this, "Adding person canceled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Adding chat canceled", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this, ChatsActivity.class);
         startActivity(i);
         finish();

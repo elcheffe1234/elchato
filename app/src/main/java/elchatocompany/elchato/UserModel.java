@@ -13,7 +13,7 @@ public class UserModel {
     static final int SocketServerPORT = 8080;
     private String serverip;
     private static UserModel userModel = new UserModel();
-
+    private ChatClientThread chatClientThread;
     private String username;
     private Vector<String> contacts;
     private Vector<String> chats;
@@ -44,4 +44,7 @@ public class UserModel {
     public static int getSocketServerPORT() {
         return SocketServerPORT;
     }
+    public void setChatClientThread(ChatClientThread chatClientThread) {this.chatClientThread = chatClientThread;}
+    public ChatClientThread getChatClientThread(){return chatClientThread;}
+
 }

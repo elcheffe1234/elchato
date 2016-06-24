@@ -44,6 +44,7 @@ public class ChatActivity extends AppCompatActivity {
         //ChatClientThread ca = new ChatClientThread(UserModel.getInstance().getUsername(), UserModel.getInstance().getServerip(), UserModel.getSocketServerPORT(),this);
         //UserModel.getInstance().setChatClientThread(ca);
         // ca.start();
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new com.google.android.gms.common.api.GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -58,7 +59,7 @@ public class ChatActivity extends AppCompatActivity {
         EditText message = (EditText) findViewById(R.id.message);
         //set new textview for chatmessages
         String messageLog = getChatMsg().getText().toString();
-        String addMessage = messageLog + "\n User - " + UserModel.getInstance().getUsername() + " : \n" + message.getText().toString();
+        String addMessage = messageLog + "\n User - " + UserModel.getInstance().getUsername() + " : " + message.getText().toString();
         chatMsg.setText(addMessage);
         message.setText("");
         // UserModel.getInstance().getChatClientThread().sendMsg(message.getText().toString() + "\n");
@@ -71,7 +72,7 @@ public class ChatActivity extends AppCompatActivity {
             //UserModel.getInstance().getChatClientThread().disconnect();
 
             //save in chatlog
-            saveInChatLog(getChatMsg().getText().toString(), UserModel.getInstance().getUsername() + "_chatname");
+            saveInChatLog(getChatMsg().getText().toString(), UserModel.getInstance().getServerip());
             finish();
             return true;
         }
@@ -105,7 +106,7 @@ public class ChatActivity extends AppCompatActivity {
     public String readFromChatLog() {
         String chathistory = "";
         try {
-            InputStream inputStream = openFileInput(UserModel.getInstance().getUsername() + "_chatname");
+            InputStream inputStream = openFileInput(UserModel.getInstance().getServerip());
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -139,6 +140,7 @@ public class ChatActivity extends AppCompatActivity {
         try {
             //before saving read whole file - avoid overwriting existing filecontent
             String writestring = readFromChatLog();
+            writestring += chatLog;
             //write into file
             fos = openFileOutput(filename, this.MODE_PRIVATE);
             fos.write(writestring.getBytes());
