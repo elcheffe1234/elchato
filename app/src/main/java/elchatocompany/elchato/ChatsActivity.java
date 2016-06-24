@@ -77,11 +77,8 @@ public class ChatsActivity extends AppCompatActivity {
                 int itemPosition = position;
                 // ListView Clicked item value
                 String itemValue = (String) listview.getItemAtPosition(position);
-                ChatClientThread chatClientThread = new ChatClientThread(UserModel.getInstance().getUsername(), itemValue, UserModel.getSocketServerPORT());
-                UserModel.getInstance().setChatClientThread(chatClientThread);
-
+                UserModel.getInstance().setServerip(itemValue);
                 openChat();
-                chatClientThread.run();
             }
         });
     }

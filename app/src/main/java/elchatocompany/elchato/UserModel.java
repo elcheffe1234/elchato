@@ -11,6 +11,16 @@ public class UserModel {
     }
 
     static final int SocketServerPORT = 8080;
+    private String serverip;
+
+    public String getServerip() {
+        return serverip;
+    }
+
+    public void setServerip(String serverip) {
+        this.serverip = serverip;
+    }
+
     private static UserModel userModel = new UserModel();
 
     private String username;
